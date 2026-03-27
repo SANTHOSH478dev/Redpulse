@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Blood Donor Website"
+version = "1.0.0"
+id = "artifacts/blood-donor"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22365
+
+[services.development]
+run = "pnpm --filter @workspace/blood-donor run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/blood-donor", "run", "build" ]
+publicDir = "artifacts/blood-donor/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22365"
+BASE_PATH = "/"
