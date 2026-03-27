@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request Blood | RedPulse</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+<header>
+  <div class="container nav">
+    <div class="logo">🩸 RedPulse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donors.html">Find Donors</a>
+      <a href="donate.html">Donate Now</a>
+      <a href="request.html">Request Blood</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+     <span id="nav-user" class="nav-user"></span>
+
+<a id="login-link" class="login" href="login.html">Login</a>
+
+<a id="logout-link"
+   class="login"
+   href="#"
+   onclick="logout()"
+   style="display:none;">
+   Logout
+</a>
+
+    </nav>
+  </div>
+</header>
+
+
+<section class="find-hero">
+  <div class="container">
+    <h1>Request Blood</h1>
+     <p style="background:#fff3f3; padding:12px 16px; border-radius:10px; color:#7a0b0b;">
+  <strong>Important:</strong> Blood requests should be submitted only for genuine medical needs.
+      Our platform helps connect patients with nearby donors.
+</p>
+
+  </div>
+</section>
+
+
+<section class="page">
+  <div class="container">
+
+  
+    
+   <form class="form" onsubmit="submitRequest(event)">
+
+
+      <label>Patient Name</label>
+      <input type="text" placeholder="Enter patient name" required>
+
+      <label>Blood Group Required</label>
+      <select required>
+        <option value="">Select blood group</option>
+        <option>O+</option>
+        <option>A+</option>
+        <option>B+</option>
+        <option>AB+</option>
+        <option>O-</option>
+        <option>A-</option>
+        <option>B-</option>
+        <option>AB-</option>
+      </select>
+
+      <label>Hospital Name</label>
+      <input type="text" placeholder="Enter hospital name" required>
+
+      <label>City</label>
+      <input type="text" placeholder="Enter city (e.g. Coimbatore)" required>
+
+      <label>Contact Number</label>
+      <input type="tel" placeholder="Enter contact number" required>
+
+      <label>Urgency Level</label>
+      <select required>
+        <option>Emergency (Within 24 hours)</option>
+        <option>Urgent (1–2 days)</option>
+        <option>Planned</option>
+      </select>
+
+     <label>Additional Notes (Optional)</label>
+     <textarea rows="4" placeholder="Any additional information (optional)"></textarea>
+
+
+      <button class="btn">Submit Blood Request</button>
+
+    </form>
+
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <p>© 2026 RedPulse | Blood Donation Platform</p>
+</footer>
+
+<script>
+function submitRequest(event) {
+  event.preventDefault();   
+  window.location.href = "request-success.html";
+}
+</script>
+<script src="js/auth-check.js"></script>
+
+</body>
+</html>

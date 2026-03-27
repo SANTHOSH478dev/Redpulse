@@ -6,13 +6,8 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface CreateDonorRequest {
+export interface RegisterRequest {
   name: string;
-  bloodType: string;
-  city: string;
-  phone: string;
   email: string;
-  age?: number | null;
-  password?: string;
-  lastDonation?: string | null;
+  password: string;
 }

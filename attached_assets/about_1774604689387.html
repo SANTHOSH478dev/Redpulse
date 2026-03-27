@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | RedPulse</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+ 
+
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin: 50px 0;
+    }
+
+    .about-hero img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .about-hero h2 {
+      color: #8e0000;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .about-hero p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .about-section {
+      margin: 60px 0;
+    }
+
+    .about-section h3 {
+      text-align: center;
+      color: #8e0000;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .info-card img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+
+    .info-card h4 {
+      color: #7a1c1c;
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .developer-box {
+      background: linear-gradient(135deg, #ffeaea, #fff5f5);
+      padding: 40px;
+      border-radius: 18px;
+      max-width: 900px;
+      margin: 80px auto;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .developer-box h3 {
+      color: #8e0000;
+      margin-bottom: 10px;
+    }
+
+    .developer-box p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+<header>
+  <div class="container nav">
+    <div class="logo">🩸 RedPulse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donors.html">Find Donors</a>
+      <a href="donate.html">Donate Now</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+
+      <span id="nav-user" class="nav-user"></span>
+      <a id="login-link" class="login" href="login.html">Login</a>
+      <a id="logout-link" class="login" href="#" onclick="logout()" style="display:none;">Logout</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page">
+  <div class="container">
+
+
+    <div class="about-hero">
+      <img src="images/about-hero.jpg" alt="Blood Donation Awareness">
+
+      <div>
+        <h2>About RedPulse</h2>
+        <p>
+          RedPulse is a modern blood donation platform created to connect
+          voluntary donors with patients and hospitals quickly and reliably.
+          Our goal is to reduce delays during emergencies by making blood
+          availability visible, accessible, and efficient.
+        </p>
+        <p>
+          By combining technology with compassion, RedPulse helps save lives
+          when every second matters.
+        </p>
+      </div>
+    </div>
+
+    
+    <div class="about-section">
+      <h3>What Drives RedPulse</h3>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <img src="images/mission.jpg" alt="Mission">
+          <h4>Our Mission</h4>
+          <p>
+            To make blood donation faster, safer, and more accessible
+            through a centralized digital platform.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <img src="images/vision.jpg" alt="Vision">
+          <h4>Our Vision</h4>
+          <p>
+            A future where no life is lost due to unavailability of blood,
+            supported by a trusted donor network.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <img src="images/how-it-works.jpg" alt="How it works">
+          <h4>How It Works</h4>
+          <p>
+            Donors register once, update availability, and patients can
+            instantly find matching donors during emergencies.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    
+    <div class="developer-box">
+      <h3>Project Developer</h3>
+      <p><strong>Santhoshkumar M</strong></p>
+      <p>BE – Computer Science Engineering</p>
+      <p>
+        Passionate about building reliable and user-friendly digital
+        solutions, with a focus on healthcare and public service platforms.
+        RedPulse reflects a commitment to using technology for real-world
+        impact and social good.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <p style="font-size:13px; opacity:0.85;">
+    © 2026 RedPulse | Blood Donation Platform
+  </p>
+</footer>
+
+<script src="js/auth-check.js"></script>
+
+</body>
+</html>

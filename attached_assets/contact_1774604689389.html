@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | RedPulse</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    
+
+    .contact-hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .contact-hero h2 {
+      color: #8e0000;
+      margin-bottom: 8px;
+    }
+
+    .contact-hero p {
+      color: #555;
+      font-size: 15px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .contact-card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+    }
+
+    .contact-card h3 {
+      color: #7a1c1c;
+      margin-bottom: 15px;
+    }
+
+    .contact-item {
+      margin-bottom: 12px;
+      font-size: 14.5px;
+      color: #444;
+    }
+
+    .contact-item b {
+      color: #5a1a1a;
+    }
+
+    .support-note {
+      background: #fff3f3;
+      border-left: 5px solid #e63946;
+      padding: 15px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #6a1c1c;
+      margin-top: 10px;
+    }
+
+    .map-box {
+      margin-top: 40px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    iframe.map {
+      width: 100%;
+      height: 350px;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+
+<header>
+  <div class="container nav">
+    <div class="logo">🩸 RedPulse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donors.html">Find Donors</a>
+      <a href="donate.html">Donate Now</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+
+      <span id="nav-user" class="nav-user"></span>
+      <a id="login-link" class="login" href="login.html">Login</a>
+      <a id="logout-link" class="login" href="#" onclick="logout()" style="display:none;">Logout</a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page">
+  <div class="container">
+
+ 
+    <div class="contact-hero">
+      <h2>Contact & Support</h2>
+      <p>
+        Get in touch with RedPulse for support, emergencies, or general inquiries.
+      </p>
+    </div>
+
+    
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <h3>Contact Information</h3>
+
+        <div class="contact-item">
+          <b>📍 Address:</b><br>
+          Coimbatore, Tamil Nadu, India
+        </div>
+
+        <div class="contact-item">
+          <b>📞 Phone:</b><br>
+          8891512806
+        </div>
+
+        <div class="contact-item">
+          <b>✉️ Email:</b><br>
+          support@redpulse.com
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3>Hospital & Emergency Support</h3>
+
+        <p class="contact-item">
+          RedPulse works closely with hospitals and verified donors to assist
+          during both emergency and scheduled blood requirements.
+        </p>
+
+        <div class="support-note">
+          🚑 For urgent blood needs, please contact available donors directly
+          or submit a blood request through the platform.
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="map-box">
+      <iframe
+        class="map"
+        src="https://maps.google.com/maps?q=Coimbatore&t=&z=12&ie=UTF8&iwloc=&output=embed"
+        loading="lazy">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <p style="font-size:13px; opacity:0.85;">
+    © 2026 RedPulse | Blood Donation Platform
+  </p>
+</footer>
+
+<script src="js/auth-check.js"></script>
+
+</body>
+</html>

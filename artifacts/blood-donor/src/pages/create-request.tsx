@@ -59,8 +59,8 @@ export default function CreateRequest() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-      <div className="bg-white rounded-3xl shadow-xl shadow-black/5 overflow-hidden border border-border">
-        <div className="bg-gradient-to-r from-red-600 to-rose-500 px-8 py-10 text-white relative">
+      <div className="bg-white rounded-3xl shadow-2xl shadow-black/5 overflow-hidden border border-border">
+        <div className="bg-gradient-to-r from-primary to-rose-600 px-8 py-10 text-white relative">
           <div className="absolute top-0 right-0 p-8 opacity-20">
             <AlertCircle className="w-32 h-32" />
           </div>
@@ -101,10 +101,10 @@ export default function CreateRequest() {
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-foreground">Urgency Level</label>
                 <Select {...register("urgency")}>
-                  <option value="low">Low (Next few days)</option>
-                  <option value="medium">Medium (Within 24-48 hours)</option>
-                  <option value="high">High (Within 12-24 hours)</option>
-                  <option value="critical">Critical (Immediate/Life-saving)</option>
+                  <option value="critical">Emergency (Within 24 hours)</option>
+                  <option value="high">Urgent (1-2 days)</option>
+                  <option value="medium">Planned</option>
+                  <option value="low">Low Priority</option>
                 </Select>
                 {errors.urgency && <p className="text-destructive text-sm">{errors.urgency.message}</p>}
               </div>
@@ -130,7 +130,7 @@ export default function CreateRequest() {
               <div className="space-y-2 md:col-span-2">
                 <label className="text-sm font-semibold text-foreground">Additional Notes (Optional)</label>
                 <textarea 
-                  className="flex w-full rounded-xl border-2 border-border bg-white px-4 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:border-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/10 transition-all min-h-[100px]"
+                  className="flex w-full rounded-xl border-2 border-border bg-white px-4 py-3 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 transition-all min-h-[100px]"
                   placeholder="Any specific instructions for donors..."
                   {...register("notes")}
                 />
@@ -141,7 +141,7 @@ export default function CreateRequest() {
               <Button 
                 type="submit" 
                 size="lg" 
-                className="w-full shadow-lg shadow-primary/30"
+                className="w-full shadow-lg shadow-primary/20 h-14 text-lg"
                 isLoading={createMutation.isPending}
               >
                 Post Blood Request

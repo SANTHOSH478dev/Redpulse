@@ -9,6 +9,7 @@ export const donorsTable = pgTable("donors", {
   city: text("city").notNull(),
   phone: text("phone").notNull(),
   email: text("email").notNull(),
+  age: integer("age"),
   isAvailable: boolean("is_available").notNull().default(true),
   lastDonation: text("last_donation"),
   createdAt: timestamp("created_at").notNull().defaultNow(),

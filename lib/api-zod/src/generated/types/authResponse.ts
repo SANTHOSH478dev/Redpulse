@@ -5,8 +5,9 @@
  * RedPulse Blood Donation Platform API
  * OpenAPI spec version: 0.1.0
  */
+import type { UserProfile } from "./userProfile";
 
-export type GetBloodRequestsParams = {
-  bloodType?: string;
-  urgency?: string;
-};
+export interface AuthResponse {
+  token: string;
+  user: UserProfile;
+}

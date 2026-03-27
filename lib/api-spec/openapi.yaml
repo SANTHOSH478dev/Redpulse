@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Api
   version: 0.1.0
-  description: Blood Donor Website API
+  description: RedPulse Blood Donation Platform API
 servers:
   - url: /api
     description: Base API path
@@ -13,13 +13,16 @@ tags:
     description: Donor management
   - name: requests
     description: Blood request management
+  - name: auth
+    description: Authentication
+  - name: appointments
+    description: Donation appointments
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -40,6 +43,11 @@ paths:
           schema:
             type: string
         - name: city
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: available
           in: query
           required: false
           schema:
@@ -195,6 +203,138 @@ paths:
               schema:
                 $ref: "#/components/schemas/Stats"
 
+  /auth/register:
+    post:
+      operationId: registerUser
+      tags: [auth]
+      summary: Register a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: User registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/login:
+    post:
+      operationId: loginUser
+      tags: [auth]
+      summary: Login with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /auth/me:
+    get:
+      operationId: getMe
+      tags: [auth]
+      summary: Get current logged-in user
+      responses:
+        "200":
+          description: Current user info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /appointments:
+    get:
+      operationId: getAppointments
+      tags: [appointments]
+      summary: Get appointments for logged-in donor
+      responses:
+        "200":
+          description: List of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Appointment"
+    post:
+      operationId: createAppointment
+      tags: [appointments]
+      summary: Book a donation appointment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAppointmentRequest"
+      responses:
+        "201":
+          description: Appointment booked
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /appointments/{id}:
+    get:
+      operationId: getAppointmentById
+      tags: [appointments]
+      summary: Get appointment by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Appointment found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Appointment"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
 components:
   schemas:
     HealthStatus:
@@ -220,6 +360,9 @@ components:
           type: string
         email:
           type: string
+        age:
+          type: integer
+          nullable: true
         isAvailable:
           type: boolean
         lastDonation:
@@ -249,6 +392,11 @@ components:
         phone:
           type: string
         email:
+          type: string
+        age:
+          type: integer
+          nullable: true
+        password:
           type: string
         lastDonation:
           type: string
@@ -356,6 +504,108 @@ components:
         - totalRequests
         - openRequests
         - bloodTypeBreakdown
+
+    RegisterRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - name
+        - email
+        - password
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        user:
+          $ref: "#/components/schemas/UserProfile"
+      required:
+        - token
+        - user
+
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        donorId:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - name
+        - email
+
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+        donorEmail:
+          type: string
+        donorName:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        center:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - donorEmail
+        - donorName
+        - date
+        - time
+        - center
+        - status
+        - createdAt
+
+    CreateAppointmentRequest:
+      type: object
+      properties:
+        donorEmail:
+          type: string
+        donorName:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        center:
+          type: string
+      required:
+        - donorEmail
+        - donorName
+        - date
+        - time
+        - center
 
     ErrorResponse:
       type: object

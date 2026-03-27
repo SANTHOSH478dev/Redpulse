@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donate Blood | RedPulse</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">🩸 RedPulse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donors.html">Find Donors</a>
+      <a href="donate.html">Donate Now</a>
+      <a href="request.html">Request Blood</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+
+      <span id="nav-user" class="nav-user"></span>
+      <a id="login-link" class="login" href="login.html">Login</a>
+      <a id="logout-link" class="login" href="#" onclick="logout()" style="display:none;">
+        Logout
+      </a>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page">
+  <div class="container">
+
+    <h2 class="center">Become a Blood Donor</h2>
+    <p class="lead center">
+      Register as a voluntary blood donor and help save lives in emergencies.
+    </p>
+
+    <div class="donor-note">
+      ✔ Donors must be 18 years or older and in good health.<br>
+      ✔ Patients can search and request blood without login.<br>
+      ✔ Donors can book appointments after login.
+    </div>
+
+    
+    <form class="form" id="donorForm" onsubmit="return saveDonor()">
+
+      <label>Full Name</label>
+      <input type="text" id="name" required>
+
+      <label>Age</label>
+      <input type="number" id="age" min="18" required>
+
+      <label>Email</label>
+      <input type="email" id="email" required>
+
+      <label>Password</label>
+      <input type="password" id="password" required>
+
+      <label>Confirm Password</label>
+      <input type="password" id="confirmPassword" required>
+
+      <label>Blood Group</label>
+      <select id="blood" required>
+        <option value="">Select</option>
+        <option>O+</option><option>A+</option><option>B+</option><option>AB+</option>
+        <option>O-</option><option>A-</option><option>B-</option><option>AB-</option>
+      </select>
+
+      <label>City</label>
+      <input type="text" id="city" required>
+
+      <label>Phone</label>
+      <input type="tel" id="phone" required>
+
+      <button class="btn">❤️ Register as Donor</button>
+
+      <p class="small center">
+        Already registered? <a href="login.html">Login here</a>
+      </p>
+
+    </form>
+
+  
+    <div id="appointmentSection" style="display:none; margin-top:40px;">
+
+      <h3 class="center">Donate Blood Appointment</h3>
+      <p class="center" style="font-size:14px;color:#555;">
+        Book your blood donation appointment. Approval takes less than 10 seconds.
+      </p>
+
+      <div class="form">
+
+        <label>Preferred Date</label>
+        <input type="date" id="appDate" required>
+
+        <label>Preferred Time</label>
+        <input type="time" id="appTime" required>
+
+        <label>Donation Center</label>
+        <select id="appCenter">
+          <option>RedPulse Blood Bank – Coimbatore</option>
+          <option>Government Medical College Hospital</option>
+          <option>Private Blood Donation Center</option>
+        </select>
+
+        <button class="btn" onclick="bookAppointment()">📅 Book Appointment</button>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  <p style="font-size:13px; opacity:0.85; text-align:center;">
+    © 2026 RedPulse | Blood Donation Platform
+  </p>
+</footer>
+
+
+<script src="js/register.js"></script>
+<script src="js/auth-check.js"></script>
+
+<script>
+const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+const donorForm = document.getElementById("donorForm");
+const appointmentSection = document.getElementById("appointmentSection");
+
+if (loggedUser) {
+  donorForm.style.display = "none";
+  appointmentSection.style.display = "block";
+  appointmentSection.scrollIntoView({ behavior: "smooth" });
+} else {
+  donorForm.style.display = "block";
+  appointmentSection.style.display = "none";
+}
+
+</script>
+<script>
+function bookAppointment() {
+  const date = document.getElementById("appDate").value;
+  const time = document.getElementById("appTime").value;
+  const center = document.getElementById("appCenter").value;
+
+  if (!date || !time || !center) {
+    alert("Please select date, time and center");
+    return;
+  }
+
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    alert("Please login to book appointment");
+    return;
+  }
+
+  const appointment = {
+    id: Date.now(),
+    donor: user.email,
+    date,
+    time,
+    center,
+    status: "Under Review"
+  };
+
+  
+  let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+  appointments.push(appointment);
+  localStorage.setItem("appointments", JSON.stringify(appointments));
+
+  
+  localStorage.setItem("currentAppointment", JSON.stringify(appointment));
+
+
+  setTimeout(() => {
+    let apps = JSON.parse(localStorage.getItem("appointments")) || [];
+    apps = apps.map(a =>
+      a.id === appointment.id ? { ...a, status: "Approved" } : a
+    );
+    localStorage.setItem("appointments", JSON.stringify(apps));
+  }, 10000);
+
+
+  window.location.href = "appointment-status.html";
+}
+</script>
+
+
+</body>
+</html>

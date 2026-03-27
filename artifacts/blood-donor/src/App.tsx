@@ -11,6 +11,11 @@ import Donors from "@/pages/donors";
 import RegisterDonor from "@/pages/register-donor";
 import Requests from "@/pages/requests";
 import CreateRequest from "@/pages/create-request";
+import Login from "@/pages/login";
+import Blog from "@/pages/blog";
+import About from "@/pages/about";
+import Contact from "@/pages/contact";
+import AppointmentStatus from "@/pages/appointment-status";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +35,11 @@ function Router() {
         <Route path="/donors/register" component={RegisterDonor} />
         <Route path="/requests" component={Requests} />
         <Route path="/requests/new" component={CreateRequest} />
+        <Route path="/login" component={Login} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/appointment-status/:id" component={AppointmentStatus} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type GetBloodRequestsParams = {
-  bloodType?: string;
-  urgency?: string;
-};
+export interface CreateAppointmentRequest {
+  donorEmail: string;
+  donorName: string;
+  date: string;
+  time: string;
+  center: string;
+}

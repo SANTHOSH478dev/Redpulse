@@ -6,6 +6,13 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
+export interface Appointment {
+  id: number;
+  donorEmail: string;
+  donorName: string;
+  date: string;
+  time: string;
+  center: string;
   status: string;
+  createdAt: string;
 }

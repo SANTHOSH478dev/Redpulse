@@ -6,7 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export type GetBloodRequestsParams = {
-  bloodType?: string;
-  urgency?: string;
-};
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
